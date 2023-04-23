@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body{
+            height: 35%;
+            background-color: #1d2630;
+            min-width: 570px;
+            position: absolute;
+            margin: auto;
+            top: 0px;
+            left: 0;
+            padding: 30px 0;
+            border-radius: 8px;
+        }
+        #newtask{
+            position: relative;
+            padding: 30px 15px;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+
+        #newtask input{
+            border-radius: 5px;
+            width: 70%;
+            height: 45px;
+            font-size: 15px;
+            border: 2px solid #d1d3d4;
+            padding: 12px;
+            color: #111111;
+            font-weight: 500;
+            position: relative;
+        }
+        #newtask input:focus{
+            outline: none;
+            border-color: #19a68c;
+
+        }
+        #newtask button{
+            position: relative;
+            float: right;
+            width: 70px;
+            height: 45px;
+            border-radius: 3px;
+            font-weight: 500;
+            font-size: 16px;
+            background: #19a68c;
+            color: #fff;
+            border: none;
+            outline: none;
+            cursor: pointer;
+        }
+        #tasks{
+            width: 100%;
+            position: relative;
+            margin-top: 40px;
+            background: #fff;
+            padding: 30px 20px;
+            border-radius: 5px;
+
+        }
+        .task{
+            background: #fff;
+            height: 50px;
+            padding: 5px 10px;
+            border-radius: 0px;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            border-bottom: 2px solid #d1d3d4;
+        }
+
+        .task span{
+          font-size: 20px;
+          font-weight: 400;
+          cursor: pointer;
+        }
+        .task button{
+          border: none;
+          background: #19a68c;
+          height: 100%;
+          width: 40px;
+          color: #fff;
+          border-radius: 5px;
+          cursor: pointer;
+        }
+        .completed{
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+
+
+
+
+
+
+
+
+
+
+
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO-LIST</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div id="newtask">
+            <input type="text" placeholder="enter task ">
+            <button id="push">Add</button>
+        </div>
+        <div id="tasks"></div>
+
+    </div>
+
+
+<script>
+    document.querySelector('#push').onclick =function(){
+        if(document.querySelector('#newtask input'). value.length == 0){
+            alert("please enter a task");
+        }
+        else{
+            document.querySelector('#tasks').innerHTML
+            += `<div class="task">
+                <span id="taskname">
+                ${document.querySelector ('#newtask input').
+                value}
+                </span>
+                <button class="delete">X</button>
+                </div>
+                `;
+
+            var current_tasks = document.querySelectorAll('.delete');
+            
+            for(var i = 0; i<current_tasks.length; i++){
+                current_tasks[i].onclick=function(){
+                    this.parentNode.remove();
+                }
+            }
+            var tasks = document.querySelectorAll('#taskname');
+            
+            for(var i = 0; i < tasks.length; i++) {
+                tasks[i].onclick=function(){
+                    this.classList.toggle('completed');
+                }
+            }
+            document.querySelector('#newtask input').value = "";
+
+        }
+    }
+</script>
+
+
+
+
+</body>
+</html>
